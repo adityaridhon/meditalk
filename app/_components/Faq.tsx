@@ -8,12 +8,12 @@ import {
 
 const Faq = () => {
   return (
-    <div className="min-h-screen bg-white py-20 px-6 md:px-24">
+    <div id="faq" className="min-h-screen bg-white pt-36 px-6 md:px-24">
       <h1 className="text-3xl md:text-4xl font-bold text-center mb-12">
         Frequently Asked Questions
       </h1>
 
-      <div className="max-w-3xl mx-auto bg-gray-50/20 rounded-2xl shadow p-6 md:p-10">
+      <div className="max-w-3xl mx-auto bg-gray-50/10 rounded-2xl shadow p-6 md:p-10">
         <Accordion type="single" collapsible className="space-y-4">
           <AccordionItem value="item-1">
             <AccordionTrigger className="text-lg font-semibold">

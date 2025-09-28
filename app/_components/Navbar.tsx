@@ -1,12 +1,30 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
-function Navbar() {
-  const menu = [
+type MenuItem = {
+  name: string;
+  href?: string;
+  action?: "scroll";
+};
+
+const Navbar = () => {
+  const scrollToAbout = () => {
+    const aboutSection = document.getElementById("about");
+    if (aboutSection) {
+      aboutSection.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  };
+
+  const menu: MenuItem[] = [
     { name: "Home", href: "/" },
-    { name: "About", href: "/about" },
+    { name: "About", action: "scroll" },
     { name: "Consultation", href: "/consultation" },
   ];
 
@@ -22,13 +40,22 @@ function Navbar() {
             <ul className="flex gap-6 text-md font-medium">
               {menu.map((item) => (
                 <li key={item.name} className="hover:text-primary ">
-                  <Link href={item.href}>{item.name}</Link>
+                  {item.action === "scroll" ? (
+                    <button
+                      onClick={scrollToAbout}
+                      className="cursor-pointer hover:text-primary transition-colors"
+                    >
+                      {item.name}
+                    </button>
+                  ) : (
+                    <Link href={item.href}>{item.name}</Link>
+                  )}
                 </li>
               ))}
             </ul>
           </div>
           <div className="button">
-            <Link href="/consultation">
+            <Link href="/signin">
               <Button>Get Started</Button>
             </Link>
           </div>
@@ -36,6 +63,6 @@ function Navbar() {
       </div>
     </>
   );
-}
+};
 
 export default Navbar;

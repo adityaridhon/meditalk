@@ -3,8 +3,8 @@ import { HeroVideoDialog } from "@/components/ui/hero-video-dialog";
 const About = () => {
   return (
     <>
-      <div className="about-section my-20">
-        <h1 className="text-4xl font-bold text-center pt-12">About Us</h1>
+      <div id="about" className="about-section pt-28">
+        <h1 className="text-4xl font-bold text-center">About Us</h1>
         <div className="flex flex-col md:flex-row justify-center items-center pt-12 px-24 gap-10">
           <div className="relative">
             <HeroVideoDialog

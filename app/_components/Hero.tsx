@@ -1,12 +1,23 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 const Hero = () => {
+  const scrollToAbout = () => {
+    const aboutSection = document.getElementById("about");
+    if (aboutSection) {
+      aboutSection.scrollIntoView({
+        block: "start",
+      });
+    }
+  };
+
   return (
     <>
-      <div className="hero-section flex flex-col-reverse md:flex-row items-center justify-center gap-10 my-20 ">
+      <div className="hero-section flex flex-col-reverse md:flex-row items-center justify-center gap-10 my-20">
         <div className="caption max-w-xl text-center md:text-left space-y-3">
           <h3 className="text-lg ">
             Welcome to <span className="text-primary font-bold">MediTalk</span>
@@ -24,11 +35,13 @@ const Hero = () => {
             <Button className="mt-4">Get Started</Button>
           </Link>
 
-          <Link href="/about">
-            <Button variant={"secondary"} className="ml-4">
-              View More
-            </Button>
-          </Link>
+          <Button
+            variant={"secondary"}
+            className="ml-4"
+            onClick={scrollToAbout}
+          >
+            View More
+          </Button>
         </div>
         <div className="image">
           <Image
