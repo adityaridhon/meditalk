@@ -1,7 +1,7 @@
-import Hero from "@/app/_components/Hero";
-import About from "@/app/_components/About";
-import Faq from "@/app/_components/Faq";
-import Footer from "@/app/_components/Footer";
+import Hero from "@/components/Hero";
+import About from "@/components/About";
+import Faq from "@/components/Faq";
+import Footer from "@/components/Footer";
 
 const Page = () => {
   return (
