@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Urbanist } from "next/font/google";
 import "./globals.css";
+import Navbar from "./_components/Navbar";
 
 const font = Urbanist({
   subsets: ["latin"],
@@ -24,7 +25,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${font.className} antialiased mx-auto`}>
-        {children}
+        <Navbar />
+        <main>{children}</main>
       </body>
     </html>
   );

@@ -39,7 +39,10 @@ const Navbar = () => {
           <div className="menu">
             <ul className="flex gap-6 text-md font-medium">
               {menu.map((item) => (
-                <li key={item.name} className="hover:text-primary ">
+                <li
+                  key={item.name}
+                  className="hover:text-primary hover:font-semibold"
+                >
                   {item.action === "scroll" ? (
                     <button
                       onClick={scrollToAbout}
@@ -55,7 +58,7 @@ const Navbar = () => {
             </ul>
           </div>
           <div className="button">
-            <Link href="/signin">
+            <Link href="/login">
               <Button>Get Started</Button>
             </Link>
           </div>
