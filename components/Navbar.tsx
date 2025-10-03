@@ -1,9 +1,9 @@
-"use client";
-
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { auth } from "@/auth";
+import { ScrollButton } from "./ScrollButton";
 
 type MenuItem = {
   name: string;
@@ -11,16 +11,10 @@ type MenuItem = {
   action?: "scroll";
 };
 
-const Navbar = () => {
-  const scrollToAbout = () => {
-    const aboutSection = document.getElementById("about");
-    if (aboutSection) {
-      aboutSection.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }
-  };
+const Navbar = async () => {
+  const session = await auth();
+
+  console.log("Session:", session);
 
   const menu: MenuItem[] = [
     { name: "Home", href: "/" },
@@ -44,23 +38,35 @@ const Navbar = () => {
                   className="hover:text-primary hover:font-semibold"
                 >
                   {item.action === "scroll" ? (
-                    <button
-                      onClick={scrollToAbout}
-                      className="cursor-pointer hover:text-primary transition-colors"
-                    >
+                    <ScrollButton className="cursor-pointer hover:text-primary transition-colors">
                       {item.name}
-                    </button>
-                  ) : (
+                    </ScrollButton>
+                  ) : item.href ? (
                     <Link href={item.href}>{item.name}</Link>
-                  )}
+                  ) : null}
                 </li>
               ))}
             </ul>
           </div>
           <div className="button">
-            <Link href="/login">
-              <Button>Get Started</Button>
-            </Link>
+            {session?.user ? (
+              <div className="flex items-center gap-2">
+                <button className="ring-2 ring-gray-200 bg-gray-100 rounded-full p-1 hover:ring-primary transition-colors">
+                  <Image
+                    src={session.user.image || "/assets/logo.png"}
+                    alt="Profile picture"
+                    width={32}
+                    height={32}
+                    className="w-8 h-8 rounded-full object-cover"
+                    unoptimized={!!session.user.image}
+                  />
+                </button>
+              </div>
+            ) : (
+              <Link href="/login">
+                <Button>Get Started</Button>
+              </Link>
+            )}
           </div>
         </div>
       </div>
